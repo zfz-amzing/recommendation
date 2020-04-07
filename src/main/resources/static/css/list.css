@@ -1,0 +1,40 @@
+#show{
+    background: #fff;
+    overflow: hidden;
+    padding: 42px 15px 0;
+    height: 3720px;
+}
+.newShow{
+    height: 3700px;
+}
+#show ul li{
+    padding: 0 20px;
+    margin-bottom: 44px;
+    overflow: hidden;
+    float: left;
+    height: 142px;
+    width: 296px;
+}
+#show ul img{
+    float: left;
+    width: 82px;
+    height: 102px;
+    border: 1px solid #f0f0f0;
+    margin-right: 14px;
+}
+#show .bookMation{
+    width: 148px;
+    height: 142px;
+    float: right;
+}
+#show .bookMation h3{
+    height: 27px;
+    width: 148px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 14px;
+    color: #212121;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

@@ -1,0 +1,45 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    outline: none;
+    font-family: "Microsoft Yahei", arial,sans-serif;
+    color: #9e9e9e;
+}
+body{
+    color: #9e9e9e;
+    background: #f0f0f0;
+}
+
+.content {
+    padding-top: 20px;
+    background: #ffffff;
+}
+.left{
+    float: left;
+    width: 48px;
+    height: 66px;
+    line-height: 66px;
+    color: #ccc;
+}
+ul{
+    display: block;
+    list-style-type: disc;
+    height: 50px;
+}
+#sort li{
+    float: left;
+    margin-right: 14px;
+    padding: 8px 0;
+}
+#sort li a{
+    display: inline-block;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 9px;
+    border: 1px solid #fff;
+    text-align: center;
+}
