@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/booksort.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="../static/css/list.css">
+
+</head>
+<body>
+<!--------------------------------------------头部-------------------------------------------->
+<nav class="navbar navbar-default">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Brand</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li ><a href="#">首页 </a></li>
+                <li class="active"><a href="#">分类</a></li>
+            </ul>
+            <form class="navbar-form navbar-left">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="书名/作者名">
+                </div>
+                <button type="submit" class="btn btn-default">搜索</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li ><a href="#">登录</a></li>
+                <li><a href="#">注册</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+
+    </div><!-- /.container-fluid -->
+</nav>
+<!--------------------------------------------头部-------------------------------------------->
+<!--------------------------------------------显示书籍-------------------------------------------->
+<div class="col-md-3"></div>
+<div class="content col-md-6">
+    <div class="container genre">
+        <div>
+            <span class="left">类型</span>
+        </div>
+        <div class="right click">
+            <ul id="sort">
+                <li class="current" data-id = "93"><a href="">小说</a></li>
+                <li data-id="113"><a href="" >文学</a></li>
+                <li data-id="142"><a href="">历史</a></li>
+                <li data-id="127"><a href="">传记</a></li>
+                <li data-id="198"><a href="">励志</a></li>
+                <li data-id="179"><a href="">社科</a></li>
+                <li data-id="168"><a href="">心理</a></li>
+                <li data-id="212"><a href="">经济</a></li>
+                <li data-id="448"><a href="">管理</a></li>
+                <li data-id="182"><a href="">文化</a></li>
+                <li data-id="181"><a href="">哲学</a></li>
+                <li data-id="453"><a href="">科普</a></li>
+                <li data-id="296"><a href="">儿童</a></li>
+                <li data-id="351"><a href="">语言</a></li>
+
+            </ul>
+        </div>
+    </div>
+    <!--书籍显示-->
+    <div id="show" >
+        <ul class="newShow">
+            <li>
+                <a href="http://www.ireader.com/index.php?ca=bookdetail.index&amp;pca=booksort.index&amp;bid=11696851" target="_blank">
+                    <img alt="金庸作品集（插图版）" src="http://book.img.ireader.com/idc_1/m_1,w_105,h_140,q_100/53f54ba7/group6/M00/2D/1D/CmRae1uGZTKEQrCPAAAAAKL40E0776871827.jpg?v=_tyPRmtg&amp;t=CmRaIVvhOHE."/>
+                </a>
+                <div class="bookMation">
+                    <h3><a href="http://www.ireader.com/index.php?ca=bookdetail.index&amp;pca=booksort.index&amp;bid=11696851" target="_blank">金庸作品集（插图版）</a></h3>
+                    <p class="tryread">金庸</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--------------------------------------------显示书籍-------------------------------------------->
+<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+
+<script>
+    $(function () {
+
+        $.ajax({
+            type:'GET',
+            url:"/show/93",
+            success:function (data) {
+                console.log(data);
+                let $books = data;
+                console.log($books[0].bookId)
+
+            },
+            error:function () {
+                alert("ajax error")
+            }
+        });
+
+    })
+</script>
+
+</body>
+</html>

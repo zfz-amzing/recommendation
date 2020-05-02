@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.View;
 
 import java.util.List;
 
@@ -24,9 +25,9 @@ public class BookController {
 //        model.addAttribute("list",books);
 //        return ResponseMessage.success().addObject("list",books);
 //    }
-@RequestMapping("/show/{typeId}")
-@ResponseBody
-public Object showAllBooks(@PathVariable Integer typeId, Model model){
+    @RequestMapping("/show/{typeId}")
+    @ResponseBody
+    public Object showAllBooks(@PathVariable Integer typeId, Model model){
     List<Book> books = bookService.selectBooksByTypeId(typeId);
     model.addAttribute("list",books);
     return books;
@@ -34,7 +35,7 @@ public Object showAllBooks(@PathVariable Integer typeId, Model model){
 
     @RequestMapping("/")
     public String index(){
-        return "booksort";
+    return "booksort";
     }
 //    @RequestMapping("/test")
 //    public String test(){
