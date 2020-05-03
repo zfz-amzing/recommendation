@@ -5,14 +5,14 @@ import lombok.Data;
 @Data
 public class User {
     private Integer userId;
-    private String userName;
+    private String username;
     private String password;
 
     @Override
     public String toString() {
         return "User{" +
                 "userId=" + userId +
-                ", userName='" + userName + '\'' +
+                ", userName='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }

@@ -18,18 +18,54 @@
 
     <form class="form-signin">
         <h2 class="form-signin-heading">Please sign in</h2>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="text" id="inputEmail" class="form-control" placeholder="用户名" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
+<!--        <label for="inputEmail" class="sr-only">Email address</label>-->
+        <input type="text" id="inputUsername" class="form-control" placeholder="用户名" required autofocus>
+        <span id="loginError">请输入用户名</span>
+<!--        <label for="inputPassword" class="sr-only">Password</label>-->
         <input type="password" id="inputPassword" class="form-control" placeholder="密码" required>
         <div class="checkbox">
             <label>
                 <input type="checkbox" value="remember-me"> 记住我
             </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+        <button class="btn btn-lg btn-primary btn-block" id="login-btn" type="submit">登录</button>
     </form>
 
 </div> <!-- /container -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+<script>
+$(function () {
+    $("#login-btn").click(function() {
+        //点击登录按钮发送Ajax请求
+        $.ajax({
+            url: "/login",
+            method: "post",
+            data: {
+                "username": $("#inputUsername").val(),
+                "password": $("#inputPassword").val()
+            },
+            success:function(response) {
+                console.log("请求发送成功");
+                console.log(response)
+                if (response.errorCode == 100){
+                    alert("登录成功");
+                    window.location = "/"
+                }else {
+                    $("#loginError").text("账号或者密码有误，请重新登录").css({"color": "red"});
+                    console.log($("#loginError").text())
+                }
+
+            },
+            error:function (response) {
+                console.log("请求发送失败")
+            }
+
+        })
+    })
+
+})
+</script>
 </body>
 </html>

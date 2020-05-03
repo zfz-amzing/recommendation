@@ -11,6 +11,6 @@ import java.util.List;
 public interface IUserMapper extends Serializable {
 
      void addUser(User user);
-     List<User> selectUserById(Integer userId);
+     List<User> selectUserByUsernameAndPassword(User user);
      
 }

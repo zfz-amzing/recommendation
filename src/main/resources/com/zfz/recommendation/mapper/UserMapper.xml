@@ -10,7 +10,7 @@
     <insert id="addUser" parameterType="com.zfz.recommendation.bean.User">
         insert into user (user_name,password)values(#{userName},#{password})
     </insert>
-    <select id="selectUserById" parameterType="int" resultMap="BaseResultMap">
-        select * from user where user_id = #{userId}
+    <select id="selectUserByUsernameAndPassword" parameterType="com.zfz.recommendation.bean.User" resultMap="BaseResultMap">
+        select * from user where username=#{username} and password=#{password}
     </select>
 </mapper>

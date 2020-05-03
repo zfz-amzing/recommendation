@@ -33,10 +33,6 @@ public class BookController {
     return books;
 }
 
-    @RequestMapping("/")
-    public String index(){
-    return "booksort";
-    }
 //    @RequestMapping("/test")
 //    public String test(){
 //        return "showBooks";
