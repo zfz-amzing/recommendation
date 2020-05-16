@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
+//(produces = "application/json; charset=utf-8")
 @RequestMapping
 public class UserController {
     @Autowired
@@ -27,6 +28,27 @@ public class UserController {
         boolean b = userService.selectUserByUsernameAndPassword(user);
         System.out.println(b);
         return b ? ResponseMessage.success() : ResponseMessage.error();
+
+    }
+    @PostMapping("/register")
+    @ResponseBody
+    public ResponseMessage register(@RequestParam String username,
+                                    @RequestParam String password){
+        System.out.println("收到注册请求: " + username +"  密码： "+ password );
+        boolean b = userService.selectUserByUsername(username);
+        if (b){
+            System.out.println("用户名已存在");
+            return ResponseMessage.error();
+        }else {
+            User user = new User();
+            user.setUsername(username);
+            user.setPassword(password);
+            if(username != null){
+                userService.addUser(user);
+                System.out.println("注册成功");
+            }
+            return ResponseMessage.success();
+        }
 
     }
 }

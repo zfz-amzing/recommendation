@@ -4,13 +4,16 @@
 <mapper namespace="com.zfz.recommendation.mapper.IUserMapper">
     <resultMap id="BaseResultMap" type="com.zfz.recommendation.bean.User">
         <result column="user_id" property="userId"/>
-        <result column="user_name" property="userName"/>
+        <result column="username" property="username"/>
         <result column="password" property="password"/>
     </resultMap>
     <insert id="addUser" parameterType="com.zfz.recommendation.bean.User">
-        insert into user (user_name,password)values(#{userName},#{password})
+        insert into user (username,password)values(#{username},#{password})
     </insert>
     <select id="selectUserByUsernameAndPassword" parameterType="com.zfz.recommendation.bean.User" resultMap="BaseResultMap">
         select * from user where username=#{username} and password=#{password}
+    </select>
+    <select id="selectUserByUsername" parameterType="String" resultType="com.zfz.recommendation.bean.User">
+        select * from user where username=#{username}
     </select>
 </mapper>

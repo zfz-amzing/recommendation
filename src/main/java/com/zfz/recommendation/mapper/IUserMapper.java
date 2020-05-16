@@ -12,5 +12,6 @@ public interface IUserMapper extends Serializable {
 
      void addUser(User user);
      List<User> selectUserByUsernameAndPassword(User user);
+     List<User> selectUserByUsername(String username);
      
 }

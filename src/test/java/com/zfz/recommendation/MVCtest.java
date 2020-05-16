@@ -13,6 +13,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.io.UnsupportedEncodingException;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @WebAppConfiguration
@@ -34,6 +36,11 @@ public class MVCtest {
                 .param("password","123")).andReturn();
         System.out.println(mvcResult.getResponse().getContentAsString());
     }
-
+    @Test
+    public void testRegister() throws Exception {
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/register").param("username","laowang")
+        .param("password", "123")).andReturn();
+        System.out.println(mvcResult.getResponse().getContentAsString());
+    }
 
 }

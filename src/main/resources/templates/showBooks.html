@@ -3,6 +3,8 @@
 <head>
 
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/booksort.css" type="text/css" rel="stylesheet">
+
     <meta charset="UTF-8">
     <title>书籍</title>
 </head>
@@ -74,59 +76,56 @@
 <!--    <div class="col-md-2"></div>-->
 
 <div class="col-md-12 jumbotron ">
-    <div class="row" >
-        <div class="col-md-4">
-            <div>
-                <a href="http://www.ireader.com/index.php?ca=bookdetail.index&amp;pca=booksort.index&amp;bid=11696851" class="float-left">
-                    <img alt="金庸作品集（插图版）" src="http://book.img.ireader.com/idc_1/m_1,w_105,h_140,q_100/53f54ba7/group6/M00/2D/1D/CmRae1uGZTKEQrCPAAAAAKL40E0776871827.jpg?v=_tyPRmtg&amp;t=CmRaIVvhOHE."/>
-                </a>
-                <h4 class="float-left">金庸</h4>
-                <p class="float-right">asnh dkljanslnjasd</p>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div>
-                <a href="http://www.ireader.com/index.php?ca=bookdetail.index&amp;pca=booksort.index&amp;bid=11696851">
-                    <img alt="金庸作品集（插图版）" src="http://book.img.ireader.com/idc_1/m_1,w_105,h_140,q_100/53f54ba7/group6/M00/2D/1D/CmRae1uGZTKEQrCPAAAAAKL40E0776871827.jpg?v=_tyPRmtg&amp;t=CmRaIVvhOHE."/>
-                </a>
-                <h4>金庸</h4>
-                <p>asnh dkljanslnjasd</p>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div>
-                <a href="http://www.ireader.com/index.php?ca=bookdetail.index&amp;pca=booksort.index&amp;bid=11696851">
-                    <img alt="金庸作品集（插图版）" src="http://book.img.ireader.com/idc_1/m_1,w_105,h_140,q_100/53f54ba7/group6/M00/2D/1D/CmRae1uGZTKEQrCPAAAAAKL40E0776871827.jpg?v=_tyPRmtg&amp;t=CmRaIVvhOHE."/>
-                </a>
-                <h4>金庸</h4>
-                <p>asnh dkljanslnjasd</p>
-            </div>
-        </div>
+    <div class="row" id="row">
+
     </div>
 
-
 </div>
-
+</div>
 <!-----------------------------------书籍展示---------------------------------------------->
-<!--<script src="../static/js/jquery/jquery-3.4.1.js"></script>-->
-<!--<script>-->
-<!--    $(function () {-->
-<!--        $.ajax({-->
-<!--            type:'GET',-->
-<!--            url:"/show/93",-->
-<!--            success:function (data) {-->
-<!--                console.log(data);-->
-<!--                let $books = data;-->
-<!--                console.log($books[0].bookTypeId)-->
+<script src="../static/js/jquery/jquery-3.4.1.js"></script>
+<script>
+    $(function () {
+        $.ajax({
+            type:'GET',
+            url:"/show/93",
+            success:function (data) {
+                console.log(data);
+                let $books = data;
+                console.log($books[0].bookId)
+                loadBooks($books)
 
+            },
+            error:function () {
+                alert("ajax error")
+            }
+        });
 
-<!--            },-->
-<!--            error:function () {-->
-<!--                alert("ajax error")-->
-<!--            }-->
-<!--        });-->
+        function loadBooks(books) {
+            for (let i = 0; i < books.length ; i++) {
+                let $introduce = String(books[i].introduce);
+                console.log($introduce.length)
+                if ($introduce.length>30){
+                    $introduce = $introduce.substring(0,30)
+                    $introduce = $introduce + "..."
+                    console.log($introduce)
+                }
+                // $(".row").append("<div class=\"col-md-3\"> <div> <a href=\"http://www.ireader.com/index.php?ca=bookdetail.index&amp;pca=booksort.index&amp;bid=11696851\" id=\"img\"> <img alt=\"金庸作品集（插图版）\" src=\"http://book.img.ireader.com/idc_1/m_1,w_105,h_140,q_100/53f54ba7/group6/M00/2D/1D/CmRae1uGZTKEQrCPAAAAAKL40E0776871827.jpg?v=_tyPRmtg&amp;t=CmRaIVvhOHE.\"/> </a> <a id=\"bookName\" href=\"http://www.ireader.com/index.php?ca=bookdetail.index&amp;pca=booksort.index&amp;bid=1169685\">金庸合集</a> <p id=\"author\">金庸</p> <p id=\"introduce\">asnhdkljanslnjasdasnhdkljanslnjasdasnh dkljanslnjasdasnh dkljanslnjasdasnh dkljanslnjasd</p> </div> </div>")
+                 $(".row").append("<div class=\"col-md-3\" id='book'> <div> <a href=" + books[i].imgSrc +" id=\"img\"> <img alt="+books[i].bookName +" src="+ books[i].imgSrc +"/> </a> <a id=\"bookName\" href=" +books[i].imgSrc + ">"+books[i].bookName + "</a> <p id=\"author\">"+ books[i].author +"</p> <p id=\"introduce\">"+$introduce +"</p> </div> </div>")
 
-<!--    })-->
-<!--</script>-->
+            }
+        }
+    })
+</script>
+<!--<div class="col-md-3">-->
+<!--    <div>-->
+<!--        <a href="http://www.ireader.com/index.php?ca=bookdetail.index&amp;pca=booksort.index&amp;bid=11696851" id="img">-->
+<!--            <img alt="金庸作品集（插图版）" src="http://book.img.ireader.com/idc_1/m_1,w_105,h_140,q_100/53f54ba7/group6/M00/2D/1D/CmRae1uGZTKEQrCPAAAAAKL40E0776871827.jpg?v=_tyPRmtg&amp;t=CmRaIVvhOHE."/>-->
+<!--        </a>-->
+<!--        <a id="bookName" href="http://www.ireader.com/index.php?ca=bookdetail.index&amp;pca=booksort.index&amp;bid=1169685">金庸合集</a>-->
+<!--        <p id="author">金庸</p>-->
+<!--        <p id="introduce">asnhdkljanslnjasdasnhdkljanslnjasdasnh dkljanslnjasdasnh dkljanslnjasdasnh dkljanslnjasd</p>-->
+<!--    </div>-->
+<!--</div>-->
 </body>
 </html>

@@ -1,45 +1,32 @@
-*{
-    margin: 0;
-    padding: 0;
-    list-style: none;
+#book{
+    height: 200px;
 }
-a{
-    text-decoration: none;
-    outline: none;
-    font-family: "Microsoft Yahei", arial,sans-serif;
-    color: #9e9e9e;
-}
-body{
-    color: #9e9e9e;
-    background: #f0f0f0;
-}
-
-.content {
-    padding-top: 20px;
-    background: #ffffff;
-}
-.left{
+#img{
     float: left;
-    width: 48px;
-    height: 66px;
-    line-height: 66px;
-    color: #ccc;
 }
-ul{
-    display: block;
-    list-style-type: disc;
-    height: 50px;
+#bookName{
+    margin-top: 0;
+    padding-left: 15px;
+    /*letter-spacing: 10px;*/
+    font-size: large;
+    font-family: 微软雅黑;
+    color: #0f0f0f;
+    /*border-bottom-width: medium;*/
+    /*border-bottom-color: black;*/
 }
-#sort li{
-    float: left;
-    margin-right: 14px;
-    padding: 8px 0;
+#author{
+    padding-left: 120px;
+    margin-top: 8px;
+    margin-bottom: 7px;
+    font-family: 微软雅黑;
+    color: #9e9e9e;
+    font-size: medium;
+    font-weight: normal;
 }
-#sort li a{
-    display: inline-block;
-    height: 50px;
-    line-height: 50px;
-    padding: 0 9px;
-    border: 1px solid #fff;
-    text-align: center;
+#introduce{
+    padding-left: 15px;
+    font-family: 微软雅黑;
+    font-size: small;
+    color: #9e9e9e;
+    overflow: hidden;
 }

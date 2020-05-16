@@ -11,6 +11,10 @@ public class IndexController {
     }
     @RequestMapping("/")
     public String index(){
-        return "booksort";
+        return "showBooks";
+    }
+    @RequestMapping("/userRegister")
+    public String register(){
+        return "register";
     }
 }

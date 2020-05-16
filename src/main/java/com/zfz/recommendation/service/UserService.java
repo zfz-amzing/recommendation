@@ -21,7 +21,11 @@ public class UserService {
         for (User user1 : users) {
             System.out.println(user1);
         }
-        return users != null && users.size() ==1 ;
+        return users != null && users.size() == 1;
+    }
+    public boolean selectUserByUsername(String username){
+        List<User> users = userMappper.selectUserByUsername(username);
+        return users != null && users.size() == 1;
     }
 
 }
