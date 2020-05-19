@@ -1,0 +1,60 @@
+#detail{
+    margin-left: 150px;
+    margin-right: 150px;
+}
+#img{
+    margin-top: 30px;
+    float: left;
+
+}
+#bookName{
+    font-size: 30px;
+    font-family: 微软雅黑;
+    font-weight: lighter;
+    color: #0f0f0f;
+    margin-left: 50px;
+}
+#author{
+    padding-top: 10px;
+    font-family: 微软雅黑;
+    color: #9e9e9e;
+    font-size: larger;
+    font-weight: normal;
+    margin-left: 155px;
+}
+#introduce{
+    margin-left: 155px;
+    font-family: 微软雅黑;
+    font-size: medium;
+    color: #9e9e9e;
+    overflow: hidden;
+}
+#img2{
+    float: left;
+}
+#bookName2{
+    margin-top: 0;
+    padding-left: 15px;
+    /*letter-spacing: 10px;*/
+    font-size: large;
+    font-family: 微软雅黑;
+    color: #0f0f0f;
+    /*border-bottom-width: medium;*/
+    /*border-bottom-color: black;*/
+}
+#author2{
+    padding-left: 120px;
+    margin-top: 8px;
+    margin-bottom: 7px;
+    font-family: 微软雅黑;
+    color: #9e9e9e;
+    font-size: medium;
+    font-weight: normal;
+}
+#introduce2{
+    padding-left: 15px;
+    font-family: 微软雅黑;
+    font-size: small;
+    color: #9e9e9e;
+    overflow: hidden;
+}

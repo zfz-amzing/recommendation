@@ -88,5 +88,24 @@ class RecommendationApplicationTests {
         boolean b = userService.selectUserByUsernameAndPassword(user);
         System.out.println(b);
     }
-
+    @Test
+    void testSaveRecommend() throws IOException, TasteException {
+        RecommendByUser recommendByUser = new RecommendByUser();
+        List<Book> books = recommendService.getBookByRecommendResult(recommendByUser.recommendByUser(3));
+        for (Book book : books){
+            recommendService.saveRecommendList(3,book.getBookId());
+        }
+    }
+    @Test
+    void testIsSaved(){
+        boolean resultSaved = recommendService.isResultSaved(3, 14248);
+        System.out.println(resultSaved);
+    }
+    @Test
+    void testGetRecommendById(){
+        List<Book> books = recommendService.getRecommendBookByUserId(3);
+        for (Book book : books){
+            System.out.println(book);
+        }
+    }
 }

@@ -2,6 +2,7 @@ package com.zfz.recommendation.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class IndexController {
@@ -16,5 +17,9 @@ public class IndexController {
     @RequestMapping("/userRegister")
     public String register(){
         return "register";
+    }
+    @RequestMapping("/detail")
+    public String detail(){
+        return "detail";
     }
 }

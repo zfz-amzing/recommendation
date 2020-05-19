@@ -59,16 +59,22 @@
                 <a class="navbar-brand" href="#">类型</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">页面</a></li>
-                    <li><a href="#">页面</a></li>
-                    <li><a href="#">页面</a></li>
-                    <li><a href="#">页面</a></li>
-                    <li><a href="#">页面</a></li>
-                    <li><a href="#">页面</a></li>
-                    <li><a href="#">页面</a></li>
-                    <li><a href="#">页面</a></li>
-                    <li><a href="#">页面</a></li>
+                <ul class="nav navbar-nav" id = "category">
+<!--                    <li class="active"><a href="#">页面</a></li>-->
+                    <li><a href="#" data-id="93">小说</a></li>
+<!--                    <li><a href="#" data-id="113">文学</a></li>-->
+                    <li><a href="#" data-id="142">历史</a></li>
+                    <li><a href="#" data-id="127">传记</a></li>
+                    <li><a href="#" data-id="447">青春</a></li>
+                    <li><a href="#" data-id="198">励志</a></li>
+                    <li><a href="#" data-id="179">社科</a></li>
+                    <li><a href="#" data-id="168">心理</a></li>
+                    <li><a href="#" data-id="212">经济</a></li>
+                    <li><a href="#" data-id="448">管理</a></li>
+                    <li><a href="#" data-id="181">哲学</a></li>
+                    <li><a href="#" data-id="453">科普</a></li>
+                    <li><a href="#" data-id="296">儿童</a></li>
+                    <li><a href="#" data-id="351">语言</a></li>
                 </ul>
             </div>
         </div>
@@ -86,13 +92,20 @@
 <script src="../static/js/jquery/jquery-3.4.1.js"></script>
 <script>
     $(function () {
+        $("#category > li > a").click(function () {
+            let $dataId = $(this).attr("data-id");
+            console.log($dataId);
+            let $url = "/show/" + $dataId
+
+            $(function () {
         $.ajax({
             type:'GET',
-            url:"/show/93",
+            url: $url,
             success:function (data) {
                 console.log(data);
                 let $books = data;
-                console.log($books[0].bookId)
+                //console.log($books[0].bookId)
+                $("#row").empty()
                 loadBooks($books)
 
             },
@@ -112,6 +125,42 @@
                 }
                 // $(".row").append("<div class=\"col-md-3\"> <div> <a href=\"http://www.ireader.com/index.php?ca=bookdetail.index&amp;pca=booksort.index&amp;bid=11696851\" id=\"img\"> <img alt=\"金庸作品集（插图版）\" src=\"http://book.img.ireader.com/idc_1/m_1,w_105,h_140,q_100/53f54ba7/group6/M00/2D/1D/CmRae1uGZTKEQrCPAAAAAKL40E0776871827.jpg?v=_tyPRmtg&amp;t=CmRaIVvhOHE.\"/> </a> <a id=\"bookName\" href=\"http://www.ireader.com/index.php?ca=bookdetail.index&amp;pca=booksort.index&amp;bid=1169685\">金庸合集</a> <p id=\"author\">金庸</p> <p id=\"introduce\">asnhdkljanslnjasdasnhdkljanslnjasdasnh dkljanslnjasdasnh dkljanslnjasdasnh dkljanslnjasd</p> </div> </div>")
                  $(".row").append("<div class=\"col-md-3\" id='book'> <div> <a href=" + books[i].imgSrc +" id=\"img\"> <img alt="+books[i].bookName +" src="+ books[i].imgSrc +"/> </a> <a id=\"bookName\" href=" +books[i].imgSrc + ">"+books[i].bookName + "</a> <p id=\"author\">"+ books[i].author +"</p> <p id=\"introduce\">"+$introduce +"</p> </div> </div>")
+
+            }
+        }
+    })
+        })
+    })
+    $(function () {
+        $.ajax({
+            type:'GET',
+            url:"/show/93",
+            success:function (data) {
+                console.log(data);
+                let $books = data;
+                console.log($books[0].bookId)
+                loadBooks($books)
+
+            },
+            error:function () {
+                alert("ajax error")
+            }
+        });
+
+        function loadBooks(books) {
+            for (let i = 0; i < books.length ; i++) {
+                let $introduce = String(books[i].introduce);
+                let $bookName = String(books[i].bookName);
+                if($bookName.length > 8){
+                    $bookName = $bookName.substring(0, 7) + "..."
+                }
+                if ($introduce.length>30){
+                    $introduce = $introduce.substring(0,30)
+                    $introduce = $introduce + "..."
+                    console.log($introduce)
+                }
+                // $(".row").append("<div class=\"col-md-3\"> <div> <a href=\"http://www.ireader.com/index.php?ca=bookdetail.index&amp;pca=booksort.index&amp;bid=11696851\" id=\"img\"> <img alt=\"金庸作品集（插图版）\" src=\"http://book.img.ireader.com/idc_1/m_1,w_105,h_140,q_100/53f54ba7/group6/M00/2D/1D/CmRae1uGZTKEQrCPAAAAAKL40E0776871827.jpg?v=_tyPRmtg&amp;t=CmRaIVvhOHE.\"/> </a> <a id=\"bookName\" href=\"http://www.ireader.com/index.php?ca=bookdetail.index&amp;pca=booksort.index&amp;bid=1169685\">金庸合集</a> <p id=\"author\">金庸</p> <p id=\"introduce\">asnhdkljanslnjasdasnhdkljanslnjasdasnh dkljanslnjasdasnh dkljanslnjasdasnh dkljanslnjasd</p> </div> </div>")
+                 $(".row").append("<div class=\"col-md-3\" id='book'> <div> <a href=" + books[i].imgSrc +" id=\"img\"> <img alt="+$bookName +" src="+ books[i].imgSrc +"/> </a> <a id=\"bookName\" href=" +books[i].imgSrc + ">"+books[i].bookName + "</a> <p id=\"author\">"+ books[i].author +"</p> <p id=\"introduce\">"+$introduce +"</p> </div> </div>")
 
             }
         }

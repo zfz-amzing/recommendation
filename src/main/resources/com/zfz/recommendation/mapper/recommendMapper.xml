@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zfz.recommendation.mapper.IRecommendMapper">
+
+    <insert id="saveRecommendList">
+        insert into recommend (user_id , book_id) values (#{userId},#{bookId})
+    </insert>
+    <select id="isResultSaved" resultType="boolean">
+        select * from recommend where user_id = #{userId} and book_id=#{bookId}
+    </select>
+    <select id="getRecommendBookId" parameterType="int" resultType="int">
+        select book_id from recommend where user_id = #{userId}
+    </select>
+</mapper>
