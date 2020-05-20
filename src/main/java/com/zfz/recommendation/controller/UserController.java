@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 //(produces = "application/json; charset=utf-8")
 @RequestMapping
@@ -20,14 +22,18 @@ public class UserController {
     @PostMapping("/login")
     @ResponseBody
     public ResponseMessage login(@RequestParam String username,
-                                 @RequestParam String password){
+                                 @RequestParam String password,
+                                 HttpSession session){
         System.out.println("接收到请求 username:"+username + "密码"+ password);
         User user = new User();
         user.setPassword(password);
         user.setUsername(username);
-        boolean b = userService.selectUserByUsernameAndPassword(user);
-        System.out.println(b);
-        return b ? ResponseMessage.success() : ResponseMessage.error();
+        User user1 = userService.selectUserByUsernameAndPassword(user);
+        System.out.println(user1);
+        if (user1 == null)
+            return ResponseMessage.error();
+        else
+            return ResponseMessage.success().addObject("user",user1);
 
     }
     @PostMapping("/register")

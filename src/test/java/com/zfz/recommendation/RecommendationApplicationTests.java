@@ -85,8 +85,8 @@ class RecommendationApplicationTests {
         User user = new User();
         user.setUsername("zfz");
         user.setPassword("123");
-        boolean b = userService.selectUserByUsernameAndPassword(user);
-        System.out.println(b);
+        User user1 = userService.selectUserByUsernameAndPassword(user);
+        System.out.println(user1);
     }
     @Test
     void testSaveRecommend() throws IOException, TasteException {

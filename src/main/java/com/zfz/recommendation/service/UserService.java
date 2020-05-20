@@ -16,12 +16,12 @@ public class UserService {
     public void addUser(User user){
         userMappper.addUser(user);
     }
-    public boolean selectUserByUsernameAndPassword(User user){
+    public User selectUserByUsernameAndPassword(User user){
         List<User> users = userMappper.selectUserByUsernameAndPassword(user);
         for (User user1 : users) {
             System.out.println(user1);
         }
-        return users != null && users.size() == 1;
+        return users.size() == 0 ? null : users.get(0);
     }
     public boolean selectUserByUsername(String username){
         List<User> users = userMappper.selectUserByUsername(username);

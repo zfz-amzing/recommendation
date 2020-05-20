@@ -48,8 +48,10 @@ $(function () {
             },
             success:function(response) {
                 console.log("请求发送成功");
-                console.log(response)
+                console.log(response.objectMap.user)
                 if (response.errorCode == 100){
+                    sessionStorage.setItem("userId",response.objectMap.user.userId)
+                    //console.log(sessionStorage.getItem("userId"))
                     alert("登录成功");
                     window.location = "/"
                 }else {

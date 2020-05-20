@@ -89,8 +89,11 @@
 <script src="../static/js/jquery/jquery-3.4.1.js" ></script>
 <script>
     $(function () {
+        let $bid = window.location.search.split("=")[1];
+        console.log($bid);
+        let $url = "/detail/"+$bid+"/3";
         $.ajax({
-            url: "/detail/9301/3",
+            url: $url,
             type: "POST",
             success:function (data) {
                 let $detail = data.detail;
