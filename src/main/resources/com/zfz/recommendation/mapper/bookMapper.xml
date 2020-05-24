@@ -17,4 +17,7 @@
     <select id="selectBooksByTypeId" parameterType="int" resultMap="BaseResultMap">
         select * from books where book_type_id = #{TypeId}
     </select>
+    <select id="selectMostViewBooks" resultMap="BaseResultMap">
+        SELECT * from books ORDER BY `view` desc LIMIT 4;
+    </select>
 </mapper>

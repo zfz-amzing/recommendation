@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zfz.recommendation.mapper.IRateMapper">
+    <select id="hasUserRated" resultType="com.zfz.recommendation.bean.Rate">
+        select * from rate where user_id = #{userId} and book_id = #{bookId}
+    </select>
+    <update id="updateRate">
+        update rate set rate = #{rate} where user_id = #{userId} and book_id = #{bookId}
+    </update>
+    <insert id="insertRate">
+        insert into rate (user_id, book_id, rate) values (#{userId},#{bookId},#{rate})
+    </insert>
+</mapper>

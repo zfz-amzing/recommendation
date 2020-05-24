@@ -39,8 +39,8 @@
                 <button type="submit" class="btn btn-default">搜索</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <li ><a href="#">登录</a></li>
-                <li><a href="#">注册</a></li>
+                <li ><a href="/login">登录</a></li>
+                <li><a href="/userRegister">注册</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
 
@@ -54,15 +54,19 @@
     <div class="row">
         <div class="col-md-12 jumbotron" id="bookDetail">
 
-<!--            <div id="detail">-->
-<!--                <p id="img" class="text-center">-->
-<!--                    <img  alt="金庸作品集（插图版）" src="http://book.img.ireader.com/idc_1/m_1,w_105,h_140,q_100/53f54ba7/group6/M00/2D/1D/CmRae1uGZTKEQrCPAAAAAKL40E0776871827.jpg?v=_tyPRmtg&amp;t=CmRaIVvhOHE."/>-->
-<!--                </p>-->
-<!--                <a id="bookName" href="http://www.ireader.com/index.php?ca=bookdetail.index&amp;pca=booksort.index&amp;bid=1169685">金庸合集</a>-->
-<!--                <p id="author">金庸</p>-->
-<!--                <p id="introduce">金庸先生历时六年，终于完成了全部作品的第三次修订工作。金庸先生对全部作品的语言文字一一进行了订正，特别对一些早期作品的故事情节和人物形象塑造进行了较大的改动，使情节更具吸引力、人物更鲜活。作品集包括全十五部，三十六册：《书剑恩仇录》《碧血剑》《射雕英雄传》《雪山飞狐》《神雕侠侣》《飞狐外传》《白马啸西风》《倚天屠龙记》《鸳鸯刀》《连城诀》《天龙八部》《侠客行》《笑傲江湖》《鹿鼎记》《越女剑》。</p>-->
-<!--            </div>-->
+            <div id="detail">
+                <p id="img" class="text-center">
+                    <img  alt="金庸作品集（插图版）" src="http://book.img.ireader.com/idc_1/m_1,w_105,h_140,q_100/53f54ba7/group6/M00/2D/1D/CmRae1uGZTKEQrCPAAAAAKL40E0776871827.jpg?v=_tyPRmtg&amp;t=CmRaIVvhOHE."/>
+                </p>
 
+                <a id="bookName" href="http://www.ireader.com/index.php?ca=bookdetail.index&amp;pca=booksort.index&amp;bid=1169685">金庸合集</a>
+                <p id="author">金庸</p>
+                <p id="introduce">金庸先生历时六年，终于完成了全部作品的第三次修订工作。金庸先生对全部作品的语言文字一一进行了订正，特别对一些早期作品的故事情节和人物形象塑造进行了较大的改动，使情节更具吸引力、人物更鲜活。作品集包括全十五部，三十六册：《书剑恩仇录》《碧血剑》《射雕英雄传》《雪山飞狐》《神雕侠侣》《飞狐外传》《白马啸西风》《倚天屠龙记》《鸳鸯刀》《连城诀》《天龙八部》《侠客行》《笑傲江湖》《鹿鼎记》《越女剑》。</p>
+            </div>
+            <div>
+                <span id="rate">您的评分为：</span>
+                <div id="star"></div>
+            </div>
         </div>
     </div>
 </div>
@@ -86,12 +90,39 @@
 
 
 
-<script src="../static/js/jquery/jquery-3.4.1.js" ></script>
+<!--<script src="../static/js/jquery/jquery-3.4.1.js" ></script>-->
 <script>
     $(function () {
         let $bid = window.location.search.split("=")[1];
+        let $userId = sessionStorage.getItem("userId")
+        if($userId == null)
+            $userId = -1
+        $("#star").raty({
+            path:"../static/raty/demo/img",
+            size     : 24,
+            starOff  : 'star-off-big.png',
+            starOn   : 'star-on-big.png',
+            click:function (score) {
+                if($userId == -1){
+                    alert("请您登录后再进行评分")
+                    window.location="/login"
+                }else{
+                    let $rateUrl = "/rate/" + $userId + "/" + $bid + "/" + score
+                    $.ajax({
+                        url: $rateUrl,
+                        success:function () {
+                            alert("评分成功")
+                        },
+                        error:function () {
+                            alert("抱歉，评分失败，请稍后再试")
+                        }
+                    })
+                }
+            }
+        })
+        console.log($userId)
         console.log($bid);
-        let $url = "/detail/"+$bid+"/3";
+        let $url = "/detail/"+$bid+"/"+$userId;
         $.ajax({
             url: $url,
             type: "POST",
@@ -127,6 +158,8 @@
             for (let i = 0; i < 4 ; i++) {
                 let $introduce = String(books[i].introduce);
                 let $bookName = String(books[i].bookName);
+                let $bid = String(books[i].bookId);
+                let $detail = "/detail?bid="+$bid;
                 console.log($bookName.length)
                 if($bookName.length > 8){
                     $bookName = $bookName.substring(0, 7);
@@ -139,7 +172,7 @@
                     console.log($introduce)
                 }
                 // $(".row").append("<div class=\"col-md-3\"> <div> <a href=\"http://www.ireader.com/index.php?ca=bookdetail.index&amp;pca=booksort.index&amp;bid=11696851\" id=\"img\"> <img alt=\"金庸作品集（插图版）\" src=\"http://book.img.ireader.com/idc_1/m_1,w_105,h_140,q_100/53f54ba7/group6/M00/2D/1D/CmRae1uGZTKEQrCPAAAAAKL40E0776871827.jpg?v=_tyPRmtg&amp;t=CmRaIVvhOHE.\"/> </a> <a id=\"bookName\" href=\"http://www.ireader.com/index.php?ca=bookdetail.index&amp;pca=booksort.index&amp;bid=1169685\">金庸合集</a> <p id=\"author\">金庸</p> <p id=\"introduce\">asnhdkljanslnjasdasnhdkljanslnjasdasnh dkljanslnjasdasnh dkljanslnjasdasnh dkljanslnjasd</p> </div> </div>")
-                $("#bookRecommend").append("<div class=\"col-md-3\" id='detail2'> <div> <a href=" + books[i].imgSrc +" id=\"img2\"> <img alt="+$bookName +" src="+ books[i].imgSrc +"/> </a> <a id=\"bookName2\" href=" +books[i].imgSrc + ">"+$bookName + "</a> <p id=\"author2\">"+ books[i].author +"</p> <p id=\"introduce2\">"+$introduce +"</p> </div> </div>")
+                $("#bookRecommend").append("<div class=\"col-md-3\" id='detail2'> <div> <a href=" + books[i].imgSrc +" id=\"img2\"> <img alt="+$bookName +" src="+ books[i].imgSrc +"/> </a> <a id=\"bookName2\" href=" +$detail + ">"+$bookName + "</a> <p id=\"author2\">"+ books[i].author +"</p> <p id=\"introduce2\">"+$introduce +"</p> </div> </div>")
 
             }
         }

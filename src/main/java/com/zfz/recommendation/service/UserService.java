@@ -25,7 +25,7 @@ public class UserService {
     }
     public boolean selectUserByUsername(String username){
         List<User> users = userMappper.selectUserByUsername(username);
-        return users != null && users.size() == 1;
+        return users != null;
     }
 
 }

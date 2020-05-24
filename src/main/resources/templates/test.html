@@ -3,10 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script type="text/javascript" src="../static/raty/demo/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../static/raty/lib/jquery.raty.min.js"></script>
 </head>
 <body>
 
+<div id = "star">
 
+</div>
 
 </body>
+<script type="text/javascript">
+    $(function () {
+        $("#star").raty({
+            path:"../static/raty/lib/img"
+        })
+        $("#star").click(function () {
+            let $tmp = $("#star input[value]").val()
+            console.log($tmp)
+            window.alert("rate success!!")
+        })
+    })
+</script>
 </html>

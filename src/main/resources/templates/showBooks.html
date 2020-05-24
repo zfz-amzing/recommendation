@@ -126,7 +126,7 @@
                 if ($introduce.length>30){
                     $introduce = $introduce.substring(0,30)
                     $introduce = $introduce + "..."
-                    console.log($introduce)
+                    //console.log($introduce)
                 }
                 // $(".row").append("<div class=\"col-md-3\"> <div> <a href=\"http://www.ireader.com/index.php?ca=bookdetail.index&amp;pca=booksort.index&amp;bid=11696851\" id=\"img\"> <img alt=\"金庸作品集（插图版）\" src=\"http://book.img.ireader.com/idc_1/m_1,w_105,h_140,q_100/53f54ba7/group6/M00/2D/1D/CmRae1uGZTKEQrCPAAAAAKL40E0776871827.jpg?v=_tyPRmtg&amp;t=CmRaIVvhOHE.\"/> </a> <a id=\"bookName\" href=\"http://www.ireader.com/index.php?ca=bookdetail.index&amp;pca=booksort.index&amp;bid=1169685\">金庸合集</a> <p id=\"author\">金庸</p> <p id=\"introduce\">asnhdkljanslnjasdasnhdkljanslnjasdasnh dkljanslnjasdasnh dkljanslnjasdasnh dkljanslnjasd</p> </div> </div>")
                  $(".row").append("<div class=\"col-md-3\" id='book'> <div> <a href=" + books[i].imgSrc +" id=\"img\"> <img alt="+books[i].bookName +" src="+ books[i].imgSrc +"/> </a> <a id=\"bookName\" href=" + $detail + ">"+books[i].bookName + "</a> <p id=\"author\">"+ books[i].author +"</p> <p id=\"introduce\">"+$introduce +"</p> </div> </div>")

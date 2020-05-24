@@ -12,4 +12,6 @@ public interface IBookMapper extends Serializable {
 
     List<Book> selectBookById(Integer bookId);
     List<Book> selectBooksByTypeId(Integer typeId);
+    List<Book> selectMostViewBooks();
+
 }

@@ -44,6 +44,10 @@ public class RecommendService {
         }
         return books;
     }
+    public List<Book> selectMostViewBooks(){
+        List<Book> books = bookMapper.selectMostViewBooks();
+        return books;
+    }
 
 
 }
