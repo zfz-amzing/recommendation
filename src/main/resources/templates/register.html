@@ -10,14 +10,59 @@
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .but button{
+            margin: 4px 2px;
+        }
+        #register-btn{
+            margin-top: 5px;
+        }
+    </style>
 </head>
 <body>
 
-<div class="col-md-5"></div>
-<div class="container col-md-2">
+<!-----------------------------------头部导航栏---------------------------------------------->
+<nav class="navbar navbar-default">
+    <div class="container">
+        <!--         Brand and toggle get grouped for better mobile display-->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Brand</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li ><a href="#">首页 </a></li>
+                <li class="active"><a href="#">分类</a></li>
+            </ul>
+            <form class="navbar-form navbar-left">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="书名/作者名">
+                </div>
+                <button type="submit" class="btn btn-default">搜索</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li ><a href="login">登录</a></li>
+                <li><a href="register">注册</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+
+    </div><!-- /.container-fluid -->
+</nav>
+<!-----------------------------------头部导航栏---------------------------------------------->
+<div class="container">
+    <div class="col-md-12 jumbotron" >
+    <div class="col-md-4"></div>
+    <div class=" col-md-4">
 
     <form class="form-signin">
-        <h2 class="form-signin-heading">Please sign in</h2>
+        <h2 class="form-signin-heading">欢迎注册</h2>
         <!--        <label for="inputEmail" class="sr-only">Email address</label>-->
         <input type="text" id="inputUsername" class="form-control" placeholder="用户名" required autofocus>
         <span id="loginError">请输入用户名</span>
@@ -25,22 +70,44 @@
         <input type="password" id="inputPassword" class="form-control" placeholder="密码" required>
         <span id="repeatError">请重复密码</span>
         <!--        <label for="inputPassword" class="sr-only">Password</label>-->
-        <input type="password" id="repeatPassword" class="form-control" placeholder="密码" required>
+        <input type="password" id="repeatPassword" class="form-control" placeholder="重复密码" required>
         <div class="checkbox">
 <!--        <label>-->
 <!--            <input type="checkbox" value="remember-me"> 记住我-->
 <!--        </label>-->
-    </div>
+        </div>
+        <div class="but ">
+            <p style="font-weight: normal ; margin-bottom: 0px">请选择喜欢的类型</p>
+            <button type="button" class="btn btn-default btn-lg" data-id="93">小说</button>
+            <button type="button" class="btn btn-default btn-lg" data-id="142">历史</button>
+            <button type="button" class="btn btn-default btn-lg" data-id="127">传记</button>
+            <button type="button" class="btn btn-default btn-lg" data-id="447">青春</button>
+            <button type="button" class="btn btn-default btn-lg" data-id="198">励志</button>
+            <button type="button" class="btn btn-default btn-lg" data-id="179">社科</button>
+            <button type="button" class="btn btn-default btn-lg" data-id="168">心理</button>
+            <button type="button" class="btn btn-default btn-lg" data-id="212">经济</button>
+            <button type="button" class="btn btn-default btn-lg" data-id="448">管理</button>
+            <button type="button" class="btn btn-default btn-lg" data-id="181">哲学</button>
+            <button type="button" class="btn btn-default btn-lg " data-id="453">科普</button>
+<!--            <button type="button" class="btn btn-default btn-lg" data-id="296">儿童</button>-->
+            <button type="button" class="btn btn-default btn-lg" data-id="351">语言</button>
+<!--            <button type="button" class="btn btn-default btn-lg" >文学</button>-->
+        </div>
         <button class="btn btn-lg btn-primary btn-block" id="register-btn" type="button">注册</button>
     </form>
 
 </div> <!-- /container -->
+</div>
+</div>
 <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
 <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
 <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>-->
 
 <script>
     $(function () {
+        $(".but button").click(function () {
+            $(this).attr("class","btn btn-default btn-lg btn-primary")
+        })
         $("#register-btn").click(function () {
             console.log($("#inputPassword").val());
             console.log($("#repeatPassword").val());
@@ -76,6 +143,7 @@
             })
         }
         })
+
 
     })
 </script>
