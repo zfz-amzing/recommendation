@@ -4,10 +4,13 @@ import com.zfz.recommendation.bean.Book;
 import com.zfz.recommendation.mapper.IBookMapper;
 import com.zfz.recommendation.mapper.IRecommendMapper;
 import com.zfz.recommendation.recommend.RecommendByUser;
+import org.apache.mahout.cf.taste.common.TasteException;
 import org.apache.mahout.cf.taste.recommender.RecommendedItem;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.relational.core.sql.In;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +32,7 @@ public class RecommendService {
         }
         return result;
     }
+
     public void saveRecommendList(Integer userId, Integer bookId){
         recommendMapper.saveRecommendList(userId,bookId);
     }
@@ -36,6 +40,12 @@ public class RecommendService {
         boolean b = recommendMapper.isResultSaved(userId, bookId);
         return b;
     }
+
+    /**
+     * 从数据库读取推荐的图书
+     * @param userId 被推荐用户的userId
+     * @return
+     */
     public List<Book> getRecommendBookByUserId(Integer userId){
         List<Integer> recommendBookId = recommendMapper.getRecommendBookId(userId);
         List<Book> books = new ArrayList<>();
@@ -44,10 +54,24 @@ public class RecommendService {
         }
         return books;
     }
+
+    /**
+     * 查询阅读量最高的书籍推荐给游客
+     * @return
+     */
     public List<Book> selectMostViewBooks(){
         List<Book> books = bookMapper.selectMostViewBooks();
         return books;
     }
 
+    public void recommend(Integer userId) throws IOException, TasteException {
+        RecommendByUser recommendByUser = new RecommendByUser();
+        List<RecommendedItem> recommendedItems = recommendByUser.recommendByUser(userId);
+        List<Book> recommendBooks = this.getBookByRecommendResult(recommendedItems);
+        for (Book book : recommendBooks){
+            if ( !recommendMapper.isResultSaved(userId, book.getBookId()) )
+                recommendMapper.saveRecommendList(userId, book.getBookId());
+        }
+    }
 
 }

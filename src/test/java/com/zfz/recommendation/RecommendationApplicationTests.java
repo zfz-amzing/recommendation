@@ -127,4 +127,10 @@ class RecommendationApplicationTests {
             System.out.println(book);
         }
     }
+    @Test
+    public void testRecommend() throws IOException, TasteException {
+        recommendService.recommend(4);
+
+
+    }
 }
