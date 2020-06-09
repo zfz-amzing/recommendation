@@ -10,6 +10,7 @@
         <result column="author" property="author"/>
         <result column="view" property="view"/>
         <result column="introduce" property="introduce"/>
+        <result column="try_read" property="tryread"/>
     </resultMap>
     <select id="selectBookById" parameterType="int" resultMap="BaseResultMap">
         select * from books where book_id = #{bookId}
@@ -19,5 +20,8 @@
     </select>
     <select id="selectMostViewBooks" resultMap="BaseResultMap">
         SELECT * from books ORDER BY `view` desc LIMIT 4;
+    </select>
+    <select id="selectBooksByName" parameterType="String" resultMap="BaseResultMap">
+        select * from books where book_name like #{name} or author like #{name}
     </select>
 </mapper>

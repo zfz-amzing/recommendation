@@ -22,4 +22,8 @@ public class IndexController {
     public String detail(){
         return "detail";
     }
+    @RequestMapping("/search")
+    public String search(){
+        return "search";
+    }
 }

@@ -83,6 +83,13 @@ public class BookController {
 
 
     }
+    @RequestMapping("select/{name}")
+    @ResponseBody
+    public List<Book> selectBooksByName(@PathVariable String name){
+        List<Book> books = bookService.selectBooksByName(name);
+        System.out.println("查询书籍和作者："+name);
+        return books;
+    }
 
 //    @RequestMapping("/test")
 //    public String test(){

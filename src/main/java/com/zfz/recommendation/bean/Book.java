@@ -11,6 +11,8 @@ public class Book {
     private String author;
     private Integer view;
     private String introduce;
+    private String tryread;
+
 
     @Override
     public String toString() {
@@ -21,6 +23,11 @@ public class Book {
                 ", imgSrc='" + imgSrc + '\'' +
                 ", author='" + author + '\'' +
                 ", view=" + view +
+                ", introduce='" + introduce + '\'' +
+                ", tryread='" + tryread + '\'' +
                 '}';
     }
+
+
+
 }

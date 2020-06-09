@@ -21,5 +21,10 @@ public class BookService {
         List<Book> books = bookMapper.selectBooksByTypeId(typeId);
         return books;
     }
+    public List<Book> selectBooksByName(String name){
+        String tmp = "%" + name + "%";
+        List<Book> books = bookMapper.selectBooksByName(tmp);
+        return books;
+    }
 
 }

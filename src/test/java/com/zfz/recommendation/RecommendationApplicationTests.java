@@ -39,7 +39,7 @@ class RecommendationApplicationTests {
     }
     @Test
     void testFindBookByTypeId(){
-        List<Book> books = bookService.selectBooksByTypeId(14248);
+        List<Book> books = bookService.selectBooksByTypeId(142);
 
         for (Book book : books)
             System.out.println(book);
@@ -81,8 +81,9 @@ class RecommendationApplicationTests {
         User user = new User();
         user.setUsername("zfz");
         user.setPassword("123");
-        User user1 = userService.selectUserByUsernameAndPassword(user);
-        System.out.println(user1);
+        // User user1 = userService.selectUserByUsernameAndPassword(user);
+        boolean test = userService.selectUserByUsername("test");
+        System.out.println(test);
     }
     @Test
     void testSaveRecommend() throws IOException, TasteException {
@@ -117,5 +118,13 @@ class RecommendationApplicationTests {
         boolean b = rateService.hasUserRated(userId, bookId);
         System.out.println(b);
         rateService.updateRate(userId,bookId,2);
+    }
+    @Test
+    public void testSelectByName(){
+        String bookName = "金";
+        List<Book> books = bookService.selectBooksByName(bookName);
+        for (Book book :books){
+            System.out.println(book);
+        }
     }
 }

@@ -5,6 +5,7 @@ import com.zfz.recommendation.bean.User;
 import com.zfz.recommendation.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,9 +25,11 @@ public class UserController {
     public ResponseMessage login(@RequestParam String username,
                                  @RequestParam String password,
                                  HttpSession session){
-        System.out.println("接收到请求 username:"+username + "密码"+ password);
+
         User user = new User();
-        user.setPassword(password);
+        String mdPassword = DigestUtils.md5DigestAsHex(password.getBytes());
+        System.out.println("接收到请求 username:"+username + "密码"+ password);
+        user.setPassword(mdPassword);
         user.setUsername(username);
         User user1 = userService.selectUserByUsernameAndPassword(user);
         System.out.println(user1);
@@ -42,13 +45,14 @@ public class UserController {
                                     @RequestParam String password){
         System.out.println("收到注册请求: " + username +"  密码： "+ password );
         boolean b = userService.selectUserByUsername(username);
-        if (b){
+        if (!b){
             System.out.println("用户名已存在");
             return ResponseMessage.error();
         }else {
+            String mdPassword = DigestUtils.md5DigestAsHex(password.getBytes());
             User user = new User();
             user.setUsername(username);
-            user.setPassword(password);
+            user.setPassword(mdPassword);
             if(username != null){
                 userService.addUser(user);
                 System.out.println("注册成功");
